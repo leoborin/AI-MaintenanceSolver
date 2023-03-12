@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resultado</title>
+    <link rel="stylesheet" type="text/css" href="page.css" media="screen" />
+
+      <style>
+table {
+	 border-spacing: 1;
+	 border-collapse: collapse;
+	 background: white;
+	 border-radius: 6px;
+	 overflow: hidden;
+	 max-width: 800px;
+	 width: 100%;
+	 margin: 0 auto;
+	 position: relative;
+}
+ table * {
+	 position: relative;
+}
+ table td, table th {
+	 padding-left: 8px;
+}
+ table thead tr {
+	 height: 60px;
+	 background: rgb(226, 200, 228);;
+	 font-size: 16px;
+}
+ table tbody tr {
+	 height: 48px;
+	 border-bottom: 1px solid #e3f1d5;
+}
+ table tbody tr:last-child {
+	 border: 0;
+}
+ table td, table th {
+	 text-align: left;
+}
+ table td.l, table th.l {
+	 text-align: right;
+}
+ table td.c, table th.c {
+	 text-align: center;
+}
+ table td.r, table th.r {
+	 text-align: center;
+}
+ @media screen and (max-width: 35.5em) {
+	 table {
+		 display: block;
+	}
+	 table > *, table tr, table td, table th {
+		 display: block;
+	}
+	 table thead {
+		 display: none;
+	}
+	 table tbody tr {
+		 height: auto;
+		 padding: 8px 0;
+	}
+	 table tbody tr td {
+		 padding-left: 45%;
+		 margin-bottom: 12px;
+	}
+	 table tbody tr td:last-child {
+		 margin-bottom: 0;
+	}
+	 table tbody tr td:before {
+		 position: absolute;
+		 font-weight: 700;
+		 width: 40%;
+		 left: 10px;
+		 top: 0;
+	}
+	 table tbody tr td:nth-child(1):before {
+		 content: "Code";
+	}
+	 table tbody tr td:nth-child(2):before {
+		 content: "Stock";
+	}
+	 table tbody tr td:nth-child(3):before {
+		 content: "Cap";
+	}
+	 table tbody tr td:nth-child(4):before {
+		 content: "Inch";
+	}
+	 table tbody tr td:nth-child(5):before {
+		 content: "Box Type";
+	}
+}
+ body {
+	 background: #9bc86a;
+	 font: 400 14px 'Calibri', 'Arial';
+	 padding: 20px;
+}
+ blockquote {
+	 color: white;
+	 text-align: center;
+}
+     
+        body {                
+                background: rgb(255,143,254);
+                background: linear-gradient(160deg, rgba(255,143,254,0.7259278711484594) 0%, rgba(15,27,116,0.8127626050420168) 100%);
+                backdrop-filter: blur(10px);
+
+                background-size: cover;
+                height: 860px;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                
+              }
+              
+             form {
+                width: 80%;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+                margin: 0 auto;
+                margin-top: 100px;
+                padding: 20px;
+                text-align: center;
+                
+              }
+              
+
+        
+            .container {
+             display: flex;
+            }
+        
+            .left-div, .right-div {
+            flex: 1;
+            ;
+            }
+        
+            .left-div {
+            padding: 10px;
+            
+            }
+        
+            .right-div {            
+            padding: 10px;
+
+            }
+            .rounded-tl{
+                 border-top-left-radius: 23px;
+                }
+          
+              .table-container2 {
+                width: 90%;
+                text-align: left;
+                margin: 40px auto;
+                font-size: 1.25em;
+                overflow: hidden;
+                
+              }
+        
+              .rounded-tl{
+                 border-top-left-radius: 23px;
+                }
+        
+            
+            </style>
+
+
+
+
+
+   
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" conte,nt="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <form>
+        <div class="table-container2">
+            <div class="container">
+                <div class="left-div" >
+                    <h3>Base Original:</h3>
+                    
+                    <canvas id="myChart" ></canvas>
+                    
+                    <h3>Calibração Solver S:</h3>
+                    
+                    <table class="rwd-table">
+                        <thead>
+                            <tr>
+                                {% for key in data[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="right-div">
+                    <h3>Calibração Solver S:</h3>
+                    
+                    <canvas id="myChart2" ></canvas>
+
+                    <h3>Calibração Solver S:</h3>
+                    
+
+                    <table class="rwd-table">
+                        <thead>
+                            <tr>
+                                {% for key in data2[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data2 %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <form>
+
+
+
+
+    <a href="../teste"class="btn btn-secondary">Baixar Arquivo</a>
+    <script> // Gráfico 1
+        // Selecione o elemento canvas
+
+                  var old_resultadoS = JSON.parse('{{ old_resultado|safe }}');
+                  
+                  var old_indiceS = JSON.parse('{{ old_indice|safe }}');
+                  var limite_oldS = JSON.parse('{{ limite_old|safe }}');
+
+
+
+
+
+                  var ctx = document.getElementById('myChart').getContext('2d');
+                  var canvas = document.getElementById('myChart');
+                  canvas.width = 100;
+                  // Crie o gráfico de barras
+                  var myChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                          labels: old_indiceS,
+                          datasets: [{
+                              label: 'HH',
+                              data: old_resultadoS,
+                              backgroundColor: [
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                                  'rgba(255, 99, 132, 0.2)',
+                              ],
+                              borderColor: [
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                                  'rgba(255, 99, 132, 1)',
+                              ],
+                              borderWidth: 1
+                          },
+                          {
+                              label: 'Limite',
+                              data: limite_oldS,
+                              borderColor: 'rgba(255, 0, 0, 1)',
+                              borderWidth: 2,
+                              type: 'line',
+                              fill: false
+                          }]
+                      },
+                      options: {
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += tooltipItem.yLabel;
+                            return label;
+                        }
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+              }
+                  });
+        
+    </script>
+        
+    <script> // Gráfico 2
+                         var new_resultadoS = JSON.parse('{{new_resultado|safe }}');
+
+                         var new_indiceS = JSON.parse('{{ new_indice|safe }}');
+                         var limite_newS = JSON.parse('{{ limite_new|safe }}');
+                
+                          var ctx = document.getElementById('myChart2').getContext('2d');
+                          var canvas = document.getElementById('myChart2');
+                          canvas.width = 100;
+                          // Crie o gráfico de barras
+                          var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: {
+                                  labels:new_indiceS ,
+                                  datasets: [{
+                                      label: 'Vendas',
+                                      data: new_resultadoS,
+                                      backgroundColor: [
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      ],
+                                      borderColor: [
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      ],
+                                      borderWidth: 1
+                                  },
+                                  {
+                                      label: 'HH',
+                                      data: limite_newS,
+                                      borderColor: 'rgba(255, 0, 0, 1)',
+                                      borderWidth: 2,
+                                      type: 'line',
+                                      fill: false
+                                  }]
+                              },
+                              options: {
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += tooltipItem.yLabel;
+                                    return label;
+                                }
+                            }
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                      }
+                          });
+                
+    </script>
+</body>
+</html>
