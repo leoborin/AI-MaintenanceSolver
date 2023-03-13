@@ -2,8 +2,11 @@
 
 Projeto
 Solver – Programação automática de planos de manutenção desbalanceados
-•	Logica Python para tratamento de base e equalização do plano de manutenção, redistribuindo tarefas conforme regra de negócio, levando em consideração criticidade e tarefas vencidas para cálculo de priorização.
+
+•	Lógica Python para tratamento de base e equalização do plano de manutenção, redistribuindo tarefas conforme regra de negócio, levando em consideração criticidade e tarefas vencidas para cálculo de priorização.
+
 •	Front-end: HTML, CSS e JS. Back-End: Python e Flask.
+
 •	Variáveis python conversando com gráficos dinâmicos dos JS.
 
 Obs Arquivo matriz com todos os dados está na pasta Data (Task_3_1.xlsx)
