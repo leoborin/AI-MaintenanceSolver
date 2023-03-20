@@ -5,6 +5,9 @@
     <link rel="stylesheet" type="text/css" href="page.css" media="screen" />
 
       <style>
+
+
+/*
 table {
 	 border-spacing: 1;
 	 border-collapse: collapse;
@@ -35,10 +38,10 @@ table {
 	 border: 0;
 }
  table td, table th {
-	 text-align: left;
+	 text-align: center;
 }
  table td.l, table th.l {
-	 text-align: right;
+	 text-align: center;
 }
  table td.c, table th.c {
 	 text-align: center;
@@ -89,10 +92,9 @@ table {
 	 table tbody tr td:nth-child(5):before {
 		 content: "Box Type";
 	}
-}
+}*/
  body {
-	 background: #9bc86a;
-	 font: 400 14px 'Calibri', 'Arial';
+	 font: 400 14px  'Calibri';
 	 padding: 20px;
 }
  blockquote {
@@ -161,8 +163,121 @@ table {
               .rounded-tl{
                  border-top-left-radius: 23px;
                 }
-        
-            
+
+                .destaque {
+                font-weight: bold;
+                background-color: rgba(255, 0, 0, 0.486);
+                }
+                .destaque2 {
+                font-weight: bold;
+                background-color: rgba(250, 250, 165, 0.767);
+                }
+                .destaque3 {
+                font-weight: bold;
+                background-color: rgba(73, 214, 68, 0.486);
+                }
+                .tabela-com-scroll {
+                max-height: 400px; /* Define uma altura máxima para a <div> */
+                overflow: auto; /* Adiciona uma barra de rolagem caso a tabela ultrapasse a altura da <div> */
+                }       
+                .tabela-com-scroll::-webkit-scrollbar {
+                width: 12px;
+                }
+
+                .tabela-com-scroll::-webkit-scrollbar-track {
+                background: #f1f1f1;
+                }
+
+                .tabela-com-scroll::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 10px;
+                border: 3px solid #f1f1f1;
+                }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family:  Calibri,  sans-serif;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f5f5f5;
+}
+
+table caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.table3 {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.table3 th, .table3 td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.table3 th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.table3 tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table3 tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table3 caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+                .tabela-com-scroll::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+                }
+                #filtro {
+                margin-bottom: 10px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                }
+                
             </style>
 
 
@@ -186,6 +301,26 @@ table {
                     
                     <canvas id="myChart" ></canvas>
                     
+
+                    <h3>Base Original[Pontos de Criticidade]:</h3>
+                    <table class="testetable2">
+                        <thead>
+                            <tr>
+                                {% for key in data_crit[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data_crit %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     <h3>Base Original:</h3>
                     
                     <table class="rwd-table">
@@ -212,10 +347,32 @@ table {
                     
                     <canvas id="myChart2" ></canvas>
 
+
+
+
+                    <h3>Calibração Solver S[Pontos de Criticidade]:</h3>
+                    <table class="testetable">
+                        <thead>
+                            <tr>
+                                {% for key in data2_crit[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in data2_crit %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     <h3>Calibração Solver S:</h3>
                     
 
-                    <table class="rwd-table">
+                    <table class="div">
                         <thead>
                             <tr>
                                 {% for key in data2[0].keys() %}
@@ -240,6 +397,56 @@ table {
 
 
 
+
+
+
+        <input type="text" id="filtro" placeholder="Digite aqui para filtrar">
+  <!--       <table class="table3">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Sexo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>João</td>
+              <td>20</td>
+              <td>Masculino</td>
+            </tr>
+            <tr>
+              <td>Julia</td>
+              <td>25</td>
+              <td>Feminino</td>
+            </tr>
+            <tr>
+              <td>Pedro</td>
+              <td>30</td>
+              <td>Masculino</td>
+            </tr>
+          </tbody>
+        </table>-->
+<div class="tabela-com-scroll">      
+     <table class="table3" height = 600px>
+            <thead>
+                <tr>
+                    {% for key in basevisao[0].keys() %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in basevisao %}
+                    <tr>
+                        {% for key, value in row.items() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
+</div>
 
     <a href="../teste"class="btn btn-secondary">Baixar Arquivo</a>
     <script> // Gráfico 1
@@ -395,6 +602,58 @@ table {
                           });
                 
     </script>
+     
+<script> // Function
+function aplicarFormatacao(seletor) {
+    const tabelas = document.querySelectorAll(seletor);
+
+        const tabela = document.querySelector(seletor);
+        const linhas = tabela.getElementsByTagName('tr');
+        const colunas = tabela.getElementsByTagName('th');
+        
+        for (let y = 1; y < colunas.length; y++){
+
+            for (let i = 1; i < linhas.length; i++) {
+            const idade = parseInt(linhas[i].getElementsByTagName('td')[y].textContent);
+            if (idade > 150) {
+                linhas[i].getElementsByTagName('td')[y].classList.add('destaque');
+            }
+            else if (idade > 100) 
+            {
+                linhas[i].getElementsByTagName('td')[y].classList.add('destaque2');
+            }
+            else if (idade > 0) 
+            {
+                linhas[i].getElementsByTagName('td')[y].classList.add('destaque3');
+            }
+
+            }
+        }
+
+
+}
+
+aplicarFormatacao('.testetable');
+aplicarFormatacao('.testetable2');
+</script>
+
+<script>
+const filtro = document.getElementById('filtro');
+const tabela = document.querySelector('.table3');
+const linhas = tabela.getElementsByTagName('tr');
+
+filtro.addEventListener('keyup', () => {
+  const termo = filtro.value.toLowerCase().trim();
+  for (let i = 1; i < linhas.length; i++) {
+    const nome = linhas[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+    if (nome.includes(termo)) {
+      linhas[i].style.display = '';
+    } else {
+      linhas[i].style.display = 'none';
+    }
+  }
+});
+</script>
 
 </body>
 </html>

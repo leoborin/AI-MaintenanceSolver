@@ -24,6 +24,11 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+@app.route('/fonts/<path:path>')
+def serve_font(path):
+    return send_from_directory('HindSiliguri-Light.ttf', path)
+
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -374,6 +379,32 @@ def download_file(name):
     data_new = data_new.reset_index()
     data_new = data_new.to_dict("records")
 
+    grouped_crit = base.groupby(['CodigoAtivo', 'Semana'])[
+        'N_Crit'].sum()
+    pivot_table_crit = grouped_crit.reset_index().pivot(
+        index='CodigoAtivo', columns='Semana', values='N_Crit')
+    pivot_table_crit .fillna(0, inplace=True)
+    data_old_crit = pivot_table_crit .round(2)
+    data_old_crit = data_old_crit.replace(0, "")
+    data_old_crit = data_old_crit.reset_index()
+    data_old_crit = data_old_crit.to_dict("records")
+
+    grouped2_crit = base.groupby(['CodigoAtivo', 'new_week'])[
+        'N_Crit'].sum()
+    pivot_table2_crit = grouped2_crit .reset_index().pivot(
+        index='CodigoAtivo', columns='new_week', values='N_Crit')
+    pivot_table2_crit .fillna(0, inplace=True)
+    data_new_crit = pivot_table2_crit .round(2)
+    data_new_crit = data_new_crit.replace(0, "")
+    data_new_crit = data_new_crit.reset_index()
+    data_new_crit = data_new_crit.to_dict("records")
+    base['old_week'] = base['Semana']
+
+    basevisao = base.loc[:, ['CodigoAtivo', 'old_week', 'new_week', 'cod_completo', 'MODELO ATIVO',
+                             'tempo estimado tarefa', 'Vencido', 'is_critical', 'cod_completo', 'N_Crit']]
+    basevisao = basevisao .round(2)
+    basevisao = basevisao.to_dict("records")
+
     myarrey = [1, 2, 3, 4]
     teste = json.dumps(myarrey)
 
@@ -381,7 +412,7 @@ def download_file(name):
     base = base.sort_values(by='Semana')
     base.to_excel("tratado.xlsx", sheet_name='base', header=True)
    # os.rename('tratado.xlsx', 'templates\tratado.xlsx')
-    return render_template("index.html", data2=data_new, data=data_old, limite_new=json_limite2, new_resultado=json_resultados_semana_new, new_indice=json_indice_semana_new, limite_old=json_limite1, old_resultado=json_resultados_semana_old, old_indice=json_indice_semana_old, semana1=0, semana2=0, semana3=0, semana4=0, TTS1=resultados_semana_old, TTS2=0, TTS3=0, TTS4=0, QTD1=0, QTD2=0, QTD3=0, QTD4=0, asemana1=asemana1, asemana2=asemana2, asemana3=asemana3, asemana4=asemana4, aTTS1=aTTS1, aTTS2=aTTS2, aTTS3=aTTS3, aTTS4=aTTS4, aQTD1=aQTD1, aQTD2=aQTD2, aQTD3=aQTD3, aQTD4=aQTD4)
+    return render_template("index.html", basevisao=basevisao, data2_crit=data_new_crit, data_crit=data_old_crit, data2=data_new, data=data_old, limite_new=json_limite2, new_resultado=json_resultados_semana_new, new_indice=json_indice_semana_new, limite_old=json_limite1, old_resultado=json_resultados_semana_old, old_indice=json_indice_semana_old, semana1=0, semana2=0, semana3=0, semana4=0, TTS1=resultados_semana_old, TTS2=0, TTS3=0, TTS4=0, QTD1=0, QTD2=0, QTD3=0, QTD4=0, asemana1=asemana1, asemana2=asemana2, asemana3=asemana3, asemana4=asemana4, aTTS1=aTTS1, aTTS2=aTTS2, aTTS3=aTTS3, aTTS4=aTTS4, aQTD1=aQTD1, aQTD2=aQTD2, aQTD3=aQTD3, aQTD4=aQTD4)
     # ,
 
 
