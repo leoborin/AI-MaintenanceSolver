@@ -24,11 +24,6 @@ def allowed_file(filename):
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-@app.route('/fonts/<path:path>')
-def serve_font(path):
-    return send_from_directory('HindSiliguri-Light.ttf', path)
-
-
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
