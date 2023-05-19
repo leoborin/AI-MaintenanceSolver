@@ -27,3 +27,4 @@ BKIA-1.ipynb
 
 
 ![solve4](https://user-images.githubusercontent.com/48888320/224579705-85496eec-78b0-4e8a-b885-d504214327c1.png)
+# AI-MaintenanceSolver
