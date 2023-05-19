@@ -12,13 +12,13 @@ Solver – Programação automática de planos de manutenção desbalanceados
 Obs Arquivo matriz com todos os dados está na pasta Data (Task_3_1.xlsx)
 
 Upload Base com dados Descalibrados 
-![1solver](https://user-images.githubusercontent.com/48888320/224579340-b5b302c1-a615-4e02-87f4-7664f94c6836.png)
+<img width="971" alt="image" src="https://github.com/leoborin/AI-MaintenanceSolver/assets/48888320/629940c3-caaf-41ad-a155-4d28d5a43329">
 
 Resultado Gráfico Antes e Depois
-![Solver2](https://user-images.githubusercontent.com/48888320/224579342-8d7ca18b-6ef5-4695-b70d-ca1d82446888.png)
+<img width="1702" alt="image" src="https://github.com/leoborin/AI-MaintenanceSolver/assets/48888320/4ddd31e1-7c06-48b5-b226-f9c3cb283a03">
 
 Tabela Antes de depois
-![Solver3](https://user-images.githubusercontent.com/48888320/224579346-7addbb04-f291-4863-9d13-07e90c911718.png)
+<img width="1466" alt="image" src="https://github.com/leoborin/AI-MaintenanceSolver/assets/48888320/efd4ceed-7ca9-4910-a758-83c40fddb600">
 
 Arquivo Notbook Jupyter
 
