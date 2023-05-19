@@ -44,6 +44,10 @@ def upload_file():
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('download_file', name=filename))
+    return render_template("inicio.html")
+
+
+"""   
     return '''
     <!doctype html>
     <html>
@@ -51,10 +55,10 @@ def upload_file():
     <style>
         body {
         
-        background: rgb(255,143,254);
-        background: linear-gradient(160deg, rgba(255,143,254,0.7259278711484594) 0%, rgba(15,27,116,0.8127626050420168) 100%);
+            background: rgb(132,94,194);
+            background: linear-gradient(143deg, rgba(132,94,194,1) 0%, rgba(0,201,167,1) 77%, rgba(77,128,118,1) 100%);
         background-size: cover;
-        height: 860px;
+        height: 917px;
       }
       
       form {
@@ -135,7 +139,10 @@ def upload_file():
         <title> Solver S </title>
     </head>
     <body>
+
         <div class="container" > 
+
+        <img src="{{ url_for('static', filename='Frame1.png') }}" alt="Descrição da Imagem" width="10%" height="10%">
 
         
 
@@ -150,6 +157,7 @@ def upload_file():
     </body>
     </html>
         '''
+"""
 
 
 @app.route('/teste', methods=['GET'])
@@ -303,7 +311,7 @@ def download_file(name):
             base.loc[base.index == x, 'concat_manut'] = str(
                 CodAtv) + "-grupo-" + str(Grup)
 
-            # Parte 2
+    # Parte 2
 
         base_semana = base[(base.new_week == semana)]
         soma_semana = base_semana['tempo estimado tarefa'].sum()
@@ -400,6 +408,38 @@ def download_file(name):
     basevisao = basevisao .round(2)
     basevisao = basevisao.to_dict("records")
 
+    Total_smn_old = base.groupby(by="Semana").sum()
+    Total_smn_old = Total_smn_old['tempo estimado tarefa']
+    Total_smn_old = Total_smn_old.reset_index()
+    Total_smn_old["SomaTotal"] = "Total"
+    Total_smn_old = Total_smn_old.pivot(
+        index='SomaTotal', columns='Semana', values='tempo estimado tarefa').round(2).reset_index()
+    Total_smn_old = Total_smn_old.to_dict("records")
+
+    Total_smn_new = base.groupby(by="new_week").sum()
+    Total_smn_new = Total_smn_new['tempo estimado tarefa']
+    Total_smn_new = Total_smn_new.reset_index()
+    Total_smn_new["SomaTotal"] = "Total"
+    Total_smn_new = Total_smn_new.pivot(
+        index='SomaTotal', columns='new_week', values='tempo estimado tarefa').round(2).reset_index()
+    Total_smn_new = Total_smn_new.to_dict("records")
+
+    Total_pont_old = base.groupby(by="Semana").sum()
+    Total_pont_old = Total_pont_old['N_Crit']
+    Total_pont_old = Total_pont_old.reset_index()
+    Total_pont_old["SomaTotal"] = "Total"
+    Total_pont_old = Total_pont_old.pivot(
+        index='SomaTotal', columns='Semana', values='N_Crit').reset_index()
+    Total_pont_old = Total_pont_old.to_dict("records")
+
+    Total_pont_new = base.groupby(by="new_week").sum()
+    Total_pont_new = Total_pont_new['N_Crit']
+    Total_pont_new = Total_pont_new.reset_index()
+    Total_pont_new["SomaTotal"] = "Total"
+    Total_pont_new = Total_pont_new.pivot(
+        index='SomaTotal', columns='new_week', values='N_Crit').reset_index()
+    Total_pont_new = Total_pont_new.to_dict("records")
+
     myarrey = [1, 2, 3, 4]
     teste = json.dumps(myarrey)
 
@@ -407,7 +447,7 @@ def download_file(name):
     base = base.sort_values(by='Semana')
     base.to_excel("tratado.xlsx", sheet_name='base', header=True)
    # os.rename('tratado.xlsx', 'templates\tratado.xlsx')
-    return render_template("index.html", basevisao=basevisao, data2_crit=data_new_crit, data_crit=data_old_crit, data2=data_new, data=data_old, limite_new=json_limite2, new_resultado=json_resultados_semana_new, new_indice=json_indice_semana_new, limite_old=json_limite1, old_resultado=json_resultados_semana_old, old_indice=json_indice_semana_old, semana1=0, semana2=0, semana3=0, semana4=0, TTS1=resultados_semana_old, TTS2=0, TTS3=0, TTS4=0, QTD1=0, QTD2=0, QTD3=0, QTD4=0, asemana1=asemana1, asemana2=asemana2, asemana3=asemana3, asemana4=asemana4, aTTS1=aTTS1, aTTS2=aTTS2, aTTS3=aTTS3, aTTS4=aTTS4, aQTD1=aQTD1, aQTD2=aQTD2, aQTD3=aQTD3, aQTD4=aQTD4)
+    return render_template("index.html", Total_smn_old=Total_smn_old, Total_smn_new=Total_smn_new, Total_pont_old=Total_pont_old, Total_pont_new=Total_pont_new, basevisao=basevisao, data2_crit=data_new_crit, data_crit=data_old_crit, data2=data_new, data=data_old, limite_new=json_limite2, new_resultado=json_resultados_semana_new, new_indice=json_indice_semana_new, limite_old=json_limite1, old_resultado=json_resultados_semana_old, old_indice=json_indice_semana_old, semana1=0, semana2=0, semana3=0, semana4=0, TTS1=resultados_semana_old, TTS2=0, TTS3=0, TTS4=0, QTD1=0, QTD2=0, QTD3=0, QTD4=0, asemana1=asemana1, asemana2=asemana2, asemana3=asemana3, asemana4=asemana4, aTTS1=aTTS1, aTTS2=aTTS2, aTTS3=aTTS3, aTTS4=aTTS4, aQTD1=aQTD1, aQTD2=aQTD2, aQTD3=aQTD3, aQTD4=aQTD4)
     # ,
 
 

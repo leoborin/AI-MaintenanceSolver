@@ -3,118 +3,41 @@
 <html lang="en">
 <head>
     <title>Resultado</title>
-    <link rel="stylesheet" type="text/css" href="page.css" media="screen" />
+ 
 
       <style>
 
+    @font-face {
+  font-family: 'HindSiliguri-Light';
+  src: url("{{ url_for('static', filename='HindSiliguri-Light.ttf') }}") format('truetype');
+}
 
-/*
-table {
-	 border-spacing: 1;
-	 border-collapse: collapse;
-	 background: white;
-	 border-radius: 6px;
-	 overflow: hidden;
-	 max-width: 800px;
-	 width: 100%;
-	 margin: 0 auto;
-	 position: relative;
-}
- table * {
-	 position: relative;
-}
- table td, table th {
-	 padding-left: 8px;
-}
- table thead tr {
-	 height: 60px;
-	 background: rgb(226, 200, 228);;
-	 font-size: 16px;
-}
- table tbody tr {
-	 height: 48px;
-	 border-bottom: 1px solid #e3f1d5;
-}
- table tbody tr:last-child {
-	 border: 0;
-}
- table td, table th {
-	 text-align: center;
-}
- table td.l, table th.l {
-	 text-align: center;
-}
- table td.c, table th.c {
-	 text-align: center;
-}
- table td.r, table th.r {
-	 text-align: center;
-}
- @media screen and (max-width: 35.5em) {
-	 table {
-		 display: block;
-	}
-	 table > *, table tr, table td, table th {
-		 display: block;
-	}
-	 table thead {
-		 display: none;
-	}
-	 table tbody tr {
-		 height: auto;
-		 padding: 8px 0;
-	}
-	 table tbody tr td {
-		 padding-left: 45%;
-		 margin-bottom: 12px;
-	}
-	 table tbody tr td:last-child {
-		 margin-bottom: 0;
-	}
-	 table tbody tr td:before {
-		 position: absolute;
-		 font-weight: 700;
-		 width: 40%;
-		 left: 10px;
-		 top: 0;
-	}
-	 table tbody tr td:nth-child(1):before {
-		 content: "Code";
-	}
-	 table tbody tr td:nth-child(2):before {
-		 content: "Stock";
-	}
-	 table tbody tr td:nth-child(3):before {
-		 content: "Cap";
-	}
-	 table tbody tr td:nth-child(4):before {
-		 content: "Inch";
-	}
-	 table tbody tr td:nth-child(5):before {
-		 content: "Box Type";
-	}
-}*/
- body {
-	 font: 400 14px  'Calibri';
-	 padding: 20px;
-}
- blockquote {
-	 color: white;
-	 text-align: center;
-}
+
      
-        body {                
-                background: rgb(255,143,254);
-                background: linear-gradient(160deg, rgba(255,143,254,0.7259278711484594) 0%, rgba(15,27,116,0.8127626050420168) 100%);
+        body {            
+            font: 400 12px  'HindSiliguri-Light';
+	        padding: 20px;   
+            background: rgb(132,94,194);
+            background: linear-gradient(143deg, rgba(132,94,194,1) 0%, rgba(0,201,167,1) 77%, rgba(77,128,118,1) 100%);
                 backdrop-filter: blur(10px);
-
+                /*background: rgb(20,48,51);
+                background: linear-gradient(345deg, rgba(20,48,51,1) 0%, rgba(28,42,43,1) 15%, rgba(148,64,44,1) 37%, rgba(148,64,44,1) 58%, rgba(245,141,6,1) 84%, rgba(235,149,54,1) 100%);
+                backdrop-filter: blur(10px);*/
                 background-size: cover;
-                height: 860px;
+                height: 4000px;
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
+        
+			transition: opacity 3s;
+	
                 
               }
+
+              blockquote {
+	 color: white;
+	 text-align: center;
+}
               
              form {
                 width: 80%;
@@ -122,7 +45,7 @@ table {
                 border-radius: 5px;
                 box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
                 margin: 0 auto;
-                margin-top: 100px;
+                margin-top: 15px;
                 padding: 20px;
                 text-align: center;
                 
@@ -178,7 +101,7 @@ table {
                 background-color: rgba(73, 214, 68, 0.486);
                 }
                 .tabela-com-scroll {
-                max-height: 400px; /* Define uma altura máxima para a <div> */
+                max-height: 800px; /* Define uma altura máxima para a <div> */
                 overflow: auto; /* Adiciona uma barra de rolagem caso a tabela ultrapasse a altura da <div> */
                 }       
                 .tabela-com-scroll::-webkit-scrollbar {
@@ -190,23 +113,30 @@ table {
                 }
 
                 .tabela-com-scroll::-webkit-scrollbar-thumb {
-                background-color: #888;
+                background-color: #845EC2;
                 border-radius: 10px;
                 border: 3px solid #f1f1f1;
                 }
 
 table {
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family:  Calibri,  sans-serif;
+    border-collapse: collapse;
+			width: 100%;
+			max-width: 800px;
+			margin: 0 auto;
+			background-color: #f7f7f7;
+			border-radius: 10px;
+			overflow: hidden;
+			box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+			border: 1px solid #ddd;
+
+
 }
 
 table th, table td {
   padding: 12px;
   text-align: center;
   border: 1px solid #ddd;
+
 }
 
 table th {
@@ -236,6 +166,14 @@ table caption {
   margin: 0 auto;
   font-family: Arial, sans-serif;
 }
+
+thead tr {
+  position: sticky;
+  top: 0;
+  background-color: #ddd; /* para ocultar a linha abaixo */
+
+}
+
 
 .table3 th, .table3 td {
   padding: 12px;
@@ -278,6 +216,31 @@ table caption {
                 border: 1px solid #ccc;
                 border-radius: 4px;
                 }
+
+                .buttao {
+    background-color: #00C9A7;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.185);
+    transition: all 0.5s ease;
+    
+  }
+
+  
+  .buttao:hover {
+    background-color: #4D8076;
+  }
+                 
+                 img {
+			display: block;
+			margin: auto;
+			max-width: 18%;
+			vertical-align: middle;
+		}
                 
             </style>
 
@@ -293,8 +256,17 @@ table caption {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 </head>
-<body>
+
+<body style="opacity: 0;" >
+    {% block content %}
+	{% endblock %}
+	<script>
+		document.body.style.opacity = 1;
+	</script>
+
+    <img src="{{ url_for('static', filename='SolverFinalbranco.png') }}" alt="Descrição da Imagem" >
     <form>
+        
         <div class="table-container2">
             <div class="container">
                 <div class="left-div" >
@@ -302,7 +274,7 @@ table caption {
                     
                     <canvas id="myChart" ></canvas>
                     
-
+                    <br><br>
                     <h3>Base Original[Pontos de Criticidade]:</h3>
                     <table class="testetable2">
                         <thead>
@@ -322,8 +294,31 @@ table caption {
                             {% endfor %}
                         </tbody>
                     </table>
+
+                    <table class="div">
+                        <br><br>
+                        
+                        
+                        <thead>
+                            <tr>
+                                {% for key in Total_pont_old[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in Total_pont_old %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+                <br><br>
                     <h3>Base Original:</h3>
-                    
+
                     <table class="rwd-table">
                         <thead>
                             <tr>
@@ -342,6 +337,27 @@ table caption {
                             {% endfor %}
                         </tbody>
                     </table>
+                    <table class="div">
+                        <br><br>
+                        
+                        
+                        <thead>
+                            <tr>
+                                {% for key in Total_smn_old[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in Total_smn_old %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
                 </div>
                 <div class="right-div">
                     <h3>Calibração Solver S:</h3>
@@ -350,7 +366,7 @@ table caption {
 
 
 
-
+                    <br><br>
                     <h3>Calibração Solver S[Pontos de Criticidade]:</h3>
                     <table class="testetable">
                         <thead>
@@ -370,6 +386,29 @@ table caption {
                             {% endfor %}
                         </tbody>
                     </table>
+                    <table class="div">
+                        <br><br>
+                        
+                        
+                        <thead>
+                            <tr>
+                                {% for key in Total_pont_new[0].keys() %}
+                                    <th>{{ key }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row in Total_pont_new %}
+                                <tr>
+                                    {% for key, value in row.items() %}
+                                        <td>{{ value }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+                      <br><br>
+
                     <h3>Calibração Solver S:</h3>
                     
 
@@ -390,6 +429,27 @@ table caption {
                                 </tr>
                             {% endfor %}
                         </tbody>
+
+                        <table class="div">
+                            <br><br>
+                            
+                            
+                            <thead>
+                                <tr>
+                                    {% for key in Total_smn_new[0].keys() %}
+                                        <th>{{ key }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in Total_smn_new %}
+                                    <tr>
+                                        {% for key, value in row.items() %}
+                                            <td>{{ value }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -402,32 +462,7 @@ table caption {
 
 
         <input type="text" id="filtro" placeholder="Digite aqui para filtrar">
-  <!--       <table class="table3">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Idade</th>
-              <th>Sexo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>João</td>
-              <td>20</td>
-              <td>Masculino</td>
-            </tr>
-            <tr>
-              <td>Julia</td>
-              <td>25</td>
-              <td>Feminino</td>
-            </tr>
-            <tr>
-              <td>Pedro</td>
-              <td>30</td>
-              <td>Masculino</td>
-            </tr>
-          </tbody>
-        </table>-->
+
 <div class="tabela-com-scroll">      
      <table class="table3" height = 600px>
             <thead>
@@ -449,7 +484,10 @@ table caption {
         </table> 
 </div>
 
-    <a href="../teste"class="btn btn-secondary">Baixar Arquivo</a>
+<br><br>
+    <a href="../teste" class="buttao" >Baixar Arquivo</a>
+
+
     <script> // Gráfico 1
         // Selecione o elemento canvas
 

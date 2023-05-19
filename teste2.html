@@ -430,7 +430,80 @@ function highlightRows2() {
 
 highlightRows();
 highlightRows2();
+
+function aplicarFormatacao(seletor) {
+  const tabelas = document.querySelectorAll(seletor);
+  tabelas.forEach(tabela => {
+    const linhas = tabela.getElementsByTagName('tr');
+    for (let i = 1; i < linhas.length; i++) {
+      const celulas = linhas[i].getElementsByTagName('td');
+      for (let j = 0; j < celulas.length; j++) {
+        const valor = celulas[j].textContent;
+        if (j === 1 && parseInt(valor) > 25) { // Adiciona destaque para valores da coluna 1 (idade) acima de 25
+          celulas[j].classList.add('destaque');
+        } else if (j === 2 && valor === 'Feminino') { // Adiciona destaque para valores da coluna 2 (sexo) igual a "Feminino"
+          celulas[j].classList.add('destaque');
+        } else if (j === 0 && valor.length > 5) { // Adiciona destaque para valores da coluna 0 (nome) com mais de 5 caracteres
+          celulas[j].classList.add('destaque');
+        }
+      }
+    }
+  });
+}
+
     </script>
 
   </body>
 </html>
+
+
+<script>
+  const tabela = document.querySelector('.testetable');
+  const linhas = tabela.getElementsByTagName('tr');
+  const colunas = tabela.getElementsByTagName('th');
+  
+  for (let y = 1; y < colunas.length; y++){
+
+      for (let i = 1; i < linhas.length; i++) {
+      const idade = parseInt(linhas[i].getElementsByTagName('td')[y].textContent);
+      if (idade > 25) {
+          linhas[i].getElementsByTagName('td')[y].classList.add('destaque');
+      }
+      }
+  }
+  
+</script>
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f5f5f5;
+}
+
+table caption {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
