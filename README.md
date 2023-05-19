@@ -1,4 +1,4 @@
-# SolverMaintenance
+# AI-MaintenanceSolver
 
 Projeto
 Solver – Programação automática de planos de manutenção desbalanceados
