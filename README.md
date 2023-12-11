@@ -1,8 +1,9 @@
 # AI-MaintenanceSolver
 Video Explicativo:
 https://www.linkedin.com/posts/leonardo-borim-de-almeida-b14a87191_aimaintenancesolver-opensource-ia-activity-7067140440549924864-_e0e?utm_source=share&utm_medium=member_desktop
-Projeto
-Solver – Programação automática de planos de manutenção desbalanceados
+
+
+ProjetoSolver – Programação automática de planos de manutenção desbalanceados
 
 •	Lógica Python para tratamento de base e equalização do plano de manutenção, redistribuindo tarefas conforme regra de negócio, grupo de ativos, levando em consideração criticidade e tarefas vencidas para cálculo de priorização.
 
